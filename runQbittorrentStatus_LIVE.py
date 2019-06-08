@@ -56,7 +56,8 @@ def main(stdscr):
 
         table = AsciiTable(table_data)
         table.justify_columns[1]="right"
-        stdscr.addstr(1, 0, table.table)
+        curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
+        stdscr.addstr(1, 0, table.table, curses.color_pair(1))
         stdscr.refresh()
 
         if stdscr.getch() == ord('q'):
