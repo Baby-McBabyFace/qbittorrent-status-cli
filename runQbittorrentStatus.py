@@ -44,8 +44,9 @@ table_data = [
     ["Total number of Paused torrents: ", len(qb.torrents(filter="paused"))],
     ["Download Speed: ", speed_value(downloadSpeed)],
     ["Upload Speed: ", speed_value(uploadSpeed)],
-    ["Download Speed: ", session_data_value(downloadSessionData)],
-    ["Upload Speed: ", session_data_value(uploadSessionData)]
+    ["Session Download: ", session_data_value(downloadSessionData)],
+                ["Session Download: ", session_data_value(downloadSessionData)],
+            ["Session Upload: ", session_data_value(uploadSessionData)]["Session Upload: ", session_data_value(uploadSessionData)]
     ]
     
 table = AsciiTable(table_data)
