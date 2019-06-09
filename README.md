@@ -5,5 +5,5 @@ Used [Python Wrapper for Python](https://github.com/v1k45/python-qBittorrent) fo
 
 Example picutre:
 
-![https://i.imgur.com/paAI9el.png](https://i.imgur.com/paAI9el.png)
+![https://i.imgur.com/bNQLSKc.png](https://i.imgur.com/bNQLSKc.png)
 
