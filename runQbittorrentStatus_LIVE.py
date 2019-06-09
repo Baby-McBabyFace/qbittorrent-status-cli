@@ -33,6 +33,7 @@ qb = Client("http://localhost:8080/")
 
 def main(stdscr):
     stdscr.nodelay(1)
+    curses.curs_set(0)
 
     while True:
         downloadSpeed = qb.global_transfer_info["dl_info_speed"]
@@ -43,7 +44,7 @@ def main(stdscr):
 
         table_data = [
             ["qBittorrent-nox"],
-            ["qBittorrent-nox Version:", qb.qbittorrent_version],
+            ["qBittorrent-nox Version:", "{:>14}".format(qb.qbittorrent_version)],
             ["Total number of torrents: ", len(qb.torrents(filter="all"))],
             ["Total number of Completed torrents: ", len(qb.torrents(filter="completed"))],
             ["Total number of Downloading torrents: ", len(qb.torrents(filter="downloading"))],
@@ -57,10 +58,30 @@ def main(stdscr):
         table = AsciiTable(table_data)
         table.justify_columns[1]="right"
         curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
-        stdscr.addstr(1, 0, table.table, curses.color_pair(1))
+        curses.init_pair(2, curses.COLOR_YELLOW, curses.COLOR_BLACK)
+        curses.init_pair(3, curses.COLOR_CYAN, curses.COLOR_MAGENTA)
+        stdscr.addstr(0, 0, time.strftime("%Y-%m-%d | %H:%M:%S"), curses.color_pair(2) | curses.A_BOLD)
+        stdscr.addstr(1, 0, table.table, curses.color_pair(1) | curses.A_BOLD)
+        stdscr.addstr(15, 0, "[q] Quit \t[p] Pause all torrents \t[r] Resume all torrents", curses.color_pair(3) | curses.A_BOLD)
         stdscr.refresh()
 
-        if stdscr.getch() == ord('q'):
+        keypress = stdscr.getch()
+
+        if keypress == ord("q"):
             break
+        elif keypress == ord("p"):
+            qb.pause_all()
+            stdscr.addstr(20, 0, "All torrents paused!", curses.color_pair(3) | curses.A_BOLD)
+            stdscr.refresh()
+            time.sleep(1)
+            stdscr.addstr(20, 0, str(50*" "))
+            stdscr.refresh()
+        elif keypress == ord("r"):
+            qb.resume_all()
+            stdscr.addstr(20, 0, "All torrents resumed!", curses.color_pair(3) | curses.A_BOLD)
+            stdscr.refresh()
+            time.sleep(1)
+            stdscr.addstr(20, 0, str(50*" "))
+            stdscr.refresh()
 
 curses.wrapper(main)
