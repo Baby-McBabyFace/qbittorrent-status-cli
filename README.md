@@ -1,7 +1,7 @@
-# qbittorrent-status-cli
+# qBittorrent-status-cli
 Shows the status of qBittorrent on terminal
 
-Used [Python Wrapper for Python](https://github.com/v1k45/python-qBittorrent) for data, and [Terminaltables](https://pypi.org/project/terminaltables/) for output.
+Used [Python Wrapper for qBittorrent](https://github.com/v1k45/python-qBittorrent) for data, and [Terminaltables](https://pypi.org/project/terminaltables/) for output.
 
 Example picutre:
 
